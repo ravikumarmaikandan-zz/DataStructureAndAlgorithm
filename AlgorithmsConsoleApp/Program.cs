@@ -18,6 +18,7 @@ namespace AlgorithmsConsoleApp
             TestAnagram();
             TestUniqueCharacter();
             TestUniqueCharacterUsingBitShifter();
+            TestStringReverse();
             #endregion
 
             Console.ReadKey();
@@ -72,12 +73,17 @@ namespace AlgorithmsConsoleApp
             var result = firstString.IsUniqueCharacterChecker();
             Console.WriteLine($"String1:{firstString} IsUniqueCharacter:{result.ToString()}");
         }
-
         public static void TestUniqueCharacterUsingBitShifter()
         {
             var firstString = "geeksforgeeks";
             var result = firstString.IsUniqueCharacterCheckerUsingBitShifter();
             Console.WriteLine($"String1:{firstString} IsUniqueCharacter:{result.ToString()}");
+        }
+        public static void TestStringReverse()
+        {
+            var str = "reverse";
+            var result = str.StringReverser();
+            Console.WriteLine($"OriginalString:{str} ReversedString:{result}");
         }
     }
 }
