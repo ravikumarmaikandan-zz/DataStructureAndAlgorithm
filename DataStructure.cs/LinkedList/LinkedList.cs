@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace DataStructure.cs.LinkedList
+namespace DataStructure.LinkedList
 {
     public class LinkedList<T>: ICollection<T>
     {
@@ -93,7 +93,13 @@ namespace DataStructure.cs.LinkedList
         #region ICollection
         public int Count { get; private set; }
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public void Add(T item)
         {
@@ -102,7 +108,9 @@ namespace DataStructure.cs.LinkedList
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Head = null;
+            Tail = null;
+            Count = 0;
         }
 
         public bool Contains(T item)
@@ -123,22 +131,65 @@ namespace DataStructure.cs.LinkedList
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            while(current != null)
+            {
+                array[arrayIndex++] = current.Value;
+                current = current.Next;
+            }
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            CustomNode.LinkedListNode<T> current = Head;
+            while(current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            var current = Head;
+            CustomNode.LinkedListNode<T> previous = null;
+            //1. Empty List - do nothing.
+            //2. Single Node: previous is null.
+            //3. Multiple Nodes:
+            //   a. node to remove is first.
+            //   b. note to remove is the middle or last.
+            while(current != null)
+            {
+                if(current.Value.Equals(item))
+                {
+                    if(previous != null)
+                    {
+                        previous.Next = current.Next;
+                        if (current.Next == null)
+                        {
+                            Tail = current;
+                        }
+
+                        Count--;
+                    }
+                    else
+                    {
+                        RemoveFirst(); //case 2, 3a
+                    }
+
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+
+            return false;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable<T>)this).GetEnumerator();
         }
         #endregion
     }

@@ -17,5 +17,14 @@ namespace DataStructure.LinkedList
 
         public LinkedListNode<T> Next { get; set; }
         
+        public void Print()
+        {
+            var current = this;
+            while(current != null)
+            {
+                Console.WriteLine(current.Value.ToString() + "->");
+                current = current.Next;
+            }
+        }
     }
 }
