@@ -1,4 +1,5 @@
-﻿using Algorithms.Sorting;
+﻿using Algorithms;
+using Algorithms.Sorting;
 using Algorithms.StringManupulation;
 using System;
 
@@ -19,6 +20,11 @@ namespace AlgorithmsConsoleApp
             TestUniqueCharacter();
             TestUniqueCharacterUsingBitShifter();
             TestStringReverse();
+            #endregion
+
+            #region Numbers Triggers
+            TestNumbers_MatchingTheTargetSum();
+            TestFindIndicesOfNumbers_MatchingTheTargetSum();
             #endregion
 
             Console.ReadKey();
@@ -60,6 +66,7 @@ namespace AlgorithmsConsoleApp
         }
         #endregion
 
+        #region String Manipulation
         public static void TestAnagram()
         {
             var firstString = "geeksforgeeks";
@@ -85,5 +92,20 @@ namespace AlgorithmsConsoleApp
             var result = str.StringReverser();
             Console.WriteLine($"OriginalString:{str} ReversedString:{result}");
         }
+        #endregion
+
+        #region Numbers
+        public static void TestFindIndicesOfNumbers_MatchingTheTargetSum()
+        {
+            var inputArray = new int[]{ 3, 5, 7, 8 };
+            inputArray.DoFindIndexsBasedOnTargetSum(targetSum: 10);
+        }
+
+        public static void TestNumbers_MatchingTheTargetSum()
+        {
+            var inputArray = new int[] { 3, 5, 7, 8 };
+            inputArray.DoFindTwoNumbersBasedOnTargetSum(targetSum: 10);
+        }
+        #endregion
     }
 }

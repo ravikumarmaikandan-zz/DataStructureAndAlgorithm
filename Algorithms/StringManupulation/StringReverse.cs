@@ -16,7 +16,7 @@ namespace Algorithms.StringManupulation
         private static string Reverse(string str)
         {
             var builder = new StringBuilder();
-            for (int i = str.Length; i>=0; i --)
+            for (int i = str.Length-1; i>=0; i --)
             {
                 builder.Append(str[i]);
             }
